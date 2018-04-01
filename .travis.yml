@@ -15,7 +15,7 @@ matrix:
             - tree
   
 install:
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/Dependencies"
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/Deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
   
   # Download CMake

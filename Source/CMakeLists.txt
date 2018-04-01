@@ -33,6 +33,7 @@ set(BUILD_BSL OFF CACHE BOOL "If true, build lexer & parser for BSL. Requires fl
 # Ensure dependencies are up to date
 ## Check prebuilt dependencies that are downloaded in a .zip
 check_and_update_binary_deps(bsf ${BSF_SOURCE_DIR}/../Dependencies/ ${BS_FRAMEWORK_PREBUILT_DEPENDENCIES_VERSION})
+execute_process(COMMAND tree -d ${BSF_SOURCE_DIR}/..)
 
 ## Check dependencies built from source
 if(WIN32)
@@ -53,7 +54,7 @@ if(WIN32)
 endif()
 
 ## Check data dependencies
-check_and_update_builtin_assets(bsf ${BSF_SOURCE_DIR}/../Data ${BS_FRAMEWORK_BUILTIN_ASSETS_VERSION})
+#check_and_update_builtin_assets(bsf ${BSF_SOURCE_DIR}/../Data ${BS_FRAMEWORK_BUILTIN_ASSETS_VERSION})
 
 # Config file
 ## Note: Must happen before script binding generation

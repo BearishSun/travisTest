@@ -243,16 +243,22 @@ function(update_binary_deps DEP_PREFIX DEP_FOLDER DEP_VERSION)
 		COMMAND ${CMAKE_COMMAND} -E tar xzf ${PROJECT_SOURCE_DIR}/Temp/Dependencies.zip
 		WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/Temp
 	)
+	message(STATUS "Extract done")
 	
 	# Copy executables and dynamic libraries
 	execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/Temp/bin ${PROJECT_SOURCE_DIR}/bin)	
+	message(STATUS "Copy dir ${PROJECT_SOURCE_DIR}/Temp/bin to ${PROJECT_SOURCE_DIR}/bin")
 	
 	# Copy static libraries, headers and tools
 	execute_process(COMMAND ${CMAKE_COMMAND} -E remove_directory ${DEP_FOLDER})	
+	message(STATUS "Remove dir ${DEP_FOLDER}")
+	
 	execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/Temp/Dependencies ${DEP_FOLDER})
+	message(STATUS "Copy dir 2 ${PROJECT_SOURCE_DIR}/Temp/Dependencies to ${DEP_FOLDER}")
 	
 	# Clean up
-	execute_process(COMMAND ${CMAKE_COMMAND} -E remove_directory ${PROJECT_SOURCE_DIR}/Temp)	
+	execute_process(COMMAND ${CMAKE_COMMAND} -E remove_directory ${PROJECT_SOURCE_DIR}/Temp)
+	message(STATUS "Remove dir 2 ${PROJECT_SOURCE_DIR}/Temp")	
 endfunction()
 
 function(check_and_update_binary_deps DEP_PREFIX DEP_FOLDER DEP_VERSION)
