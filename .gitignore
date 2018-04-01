@@ -1,0 +1,22 @@
+# Ignored files
+*~
+*.suo
+*.sdf
+*.opensdf
+bin
+obj
+lib
+Dependencies
+Builds
+Data/.version
+Data/*
+!Data/ShaderDependencies.json
+!Data/Shaders
+Data/Raw/*
+!Data/Raw/Shaders
+Documentation/Generated
+/Build
+*.aps
+*.opendb
+BsEngineConfig.h
+BsFrameworkConfig.h
