@@ -42,9 +42,12 @@ install:
       cd binutils
       mkdir build
       cd build
-      ../configure --prefix=/usr --enable-gold --enable-ld=default --enable-plugins --enable-shared --disable-werror --enable-64-bit-bfd --with-system-zlib
-      make tooldir=/usr
-      make tooldir=/usr install
+      ../configure --prefix=${TRAVIS_BUILD_DIR}/binutils --enable-gold --enable-ld=default --enable-plugins --enable-shared --disable-werror --enable-64-bit-bfd --with-system-zlib
+      make tooldir=${TRAVIS_BUILD_DIR}/binutils
+      make tooldir=${TRAVIS_BUILD_DIR}/binutils install
+      export PATH=${TRAVIS_BUILD_DIR}/binutils/bin:${PATH}
+      cd ..
+      cd ..
       ld -v
     fi	
 
