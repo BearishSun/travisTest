@@ -11,6 +11,9 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
+            - gcc-7
+            - g++-7
+            - binutils-2.26			
             - libgl1-mesa-dev
             - libglu1-mesa-dev
             - mesa-common-dev
@@ -19,6 +22,14 @@ matrix:
             - libxrandr-dev
             - libxi-dev
             - uuid-dev
+          update-alternatives:
+            - install /usr/bin/gcc gcc /usr/bin/gcc-7 50
+            - install /usr/bin/g++ g++ /usr/bin/g++-7 50
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"	
+
+before_install:
+  - eval "${MATRIX_EVAL}"
   
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/Deps"
