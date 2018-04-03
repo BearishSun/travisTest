@@ -50,5 +50,5 @@ after_success:
   - filename=bsf_${today}_${TRAVIS_OS_NAME}.zip
   - cd ${INSTALL_DIR}
   - echo $TRAVIS_EVENT_TYPE
-  - if [[ "$TRAVIS_EVENT_TYPE" == "cron" ]]; then zip -rq ${filename} ./*; fi
-  - if [[ "$TRAVIS_EVENT_TYPE" == "cron" ]]; then curl --ftp-create-dirs -T ${filename} -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}; fi
+  - if [ $TRAVIS_EVENT_TYPE = "cron" ]]; then zip -rq ${filename} ./*; fi
+  - if [ $TRAVIS_EVENT_TYPE = "cron" ]]; then curl --ftp-create-dirs -T ${filename} -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}; fi
