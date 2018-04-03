@@ -28,11 +28,11 @@ after_build:
  - ps: 7z a bsf_Win64_Symbols_$buildName.zip ./CI/*pdb -r
 
 artifacts:
-  - path: bsf_Win64_$(APPVEYOR_BUILD_NUMBER).zip
-    name: bsf_Win64_$(APPVEYOR_BUILD_NUMBER)
+  - path: bsf_Win64_$buildName.zip
+    name: bsf_Win64_$buildName
     type: zip
-  - path: bsf_Win64_Symbols_$(APPVEYOR_BUILD_NUMBER).zip
-    name: bsf_Win64_Symbols_$(APPVEYOR_BUILD_NUMBER)
+  - path: bsf_Win64_Symbols_$buildName.zip
+    name: bsf_Win64_Symbols_$buildName
     type: zip
 
 deploy:
@@ -41,7 +41,7 @@ deploy:
     host: $(FTP_HOST)
     username: $(FTP_USER)
     password: $(FTP_PASSWORD)
-    folder: bsfBuilds
+    folder: bsfBuilds/Windows
     application:
     active_mode: false
     beta: true

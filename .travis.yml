@@ -19,6 +19,7 @@ matrix:
             - libx11-dev
             - libxcursor-dev
             - libxrandr-dev
+            - libxi-dev
             - uuid-dev
   
 install:
