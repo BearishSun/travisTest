@@ -50,8 +50,8 @@ script:
   
 after_success:
   - cd ..
-  - today=`date +%Y-%m-%d.%H:%M:%S`
-  - filename=bsf_${TRAVIS_OS_NAME}_${today}.zip
+  - today=`date +%Y-%m-%d`
+  - filename=bsf_${today}_${TRAVIS_OS_NAME}.zip
   - cd ${INSTALL_DIR}
-  - zip -rq ${filename} ./*
-  - curl --ftp-create-dirs -T ${filename} -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}
+  - if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then zip -rq ${filename} ./*; fi
+  - if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then curl --ftp-create-dirs -T ${filename} -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}; fi
