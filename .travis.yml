@@ -48,6 +48,7 @@ install:
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       /sbin/ldconfig -p | grep stdc++
+      ls /usr/lib/x86_64-linux-gnu
       
       BINUTILS_URL="http://ftp.gnu.org/gnu/binutils/binutils-2.28.tar.gz"
       mkdir binutils
