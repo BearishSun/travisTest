@@ -13,6 +13,13 @@ matrix:
           packages:
             - binutils-2.26
             - tree
+            - libgl1-mesa-dev
+            - libglu1-mesa-dev
+            - mesa-common-dev
+            - libx11-dev
+            - libxcursor-dev
+            - libxrandr-dev
+            - uuid-dev
   
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/Deps"
