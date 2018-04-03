@@ -21,7 +21,6 @@ build_script:
   - cmd: cmake --build ./ --config OptimizedDebug --target INSTALL
 
 after_build:
- - ps: pwd
  - ps: cd ..
  - ps: $buildName = "$(Get-Date -format dd.MM.yyyy)"
  - ps: Set-AppveyorBuildVariable "BSF_BUILD_NAME" "$buildName"
