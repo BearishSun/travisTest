@@ -29,11 +29,11 @@ after_build:
  - ps: 7z a bsf_$buildName_Win64_Symbols.zip ./CI/*pdb -r
 
 artifacts:
-  - path: bsf_$BSF_BUILD_NAME_Win64.zip
-    name: bsf_$BSF_BUILD_NAME_Win64
+  - path: bsf_%BSF_BUILD_NAME%_Win64.zip
+    name: bsf_%BSF_BUILD_NAME%_Win64
     type: zip
-  - path: bsf_$BSF_BUILD_NAME_Win64_Symbols.zip
-    name: bsf_$BSF_BUILD_NAME_Win64_Symbols
+  - path: bsf_%BSF_BUILD_NAME%_Win64_Symbols.zip
+    name: bsf_%BSF_BUILD_NAME%_Win64_Symbols
     type: zip
 
 deploy:
