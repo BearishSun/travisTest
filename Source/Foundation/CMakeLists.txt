@@ -25,7 +25,7 @@ elseif(APPLE)
 endif()
 
 # Target
-add_library(bsf SHARED ${BS_UTILITY_SRC})
+add_executable(bsf ${BS_UTILITY_SRC})
 
 # Includes
 target_include_directories(bsf PUBLIC "bsfUtility")
