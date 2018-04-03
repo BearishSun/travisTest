@@ -2,6 +2,7 @@
 #include "snappy-sinksource.h"
 #include <vector>
 #include <iostream>
+#include <cstring>
 
 /** Source accepting a data stream. Used for Snappy compression library. */
 class DataStreamSource : public snappy::Source
@@ -153,9 +154,6 @@ int main()
 		for(int i = 0; i < bytesWritten; i++)
 			std::cout << dst.GetOutput()[i];
 	}
-
-	system("pause");
-
 
 	return 0;
 }
