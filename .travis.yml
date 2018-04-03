@@ -47,6 +47,8 @@ install:
   # Download binutils 2.28
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      /sbin/ldconfig -p | grep stdc++
+      
       BINUTILS_URL="http://ftp.gnu.org/gnu/binutils/binutils-2.28.tar.gz"
       mkdir binutils
       travis_retry wget --no-check-certificate --quiet -O - ${BINUTILS_URL} | tar --strip-components=1 -xz -C binutils
