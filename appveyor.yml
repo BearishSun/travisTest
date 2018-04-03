@@ -24,15 +24,15 @@ after_build:
  - ps: cd ..
  - ps: $buildName = "$(Get-Date -format dd.MM.yyyy)"
  - ps: Set-AppveyorBuildVariable "BSF_BUILD_NAME" "$buildName"
- - cmd: 7z a bsf_%BSF_BUILD_NAME%_Win64.zip ./CI/* -xr!*pdb
- - cmd: 7z a bsf_%BSF_BUILD_NAME%_Win64_Symbols.zip ./CI/*pdb -r
+ - cmd: 7z a bsf_%BSF_BUILD_NAME%_win64.zip ./CI/* -xr!*pdb
+ - cmd: 7z a bsf_%BSF_BUILD_NAME%_win64_symbols.zip ./CI/*pdb -r
 
 artifacts:
-  - path: bsf_%BSF_BUILD_NAME%_Win64.zip
-    name: bsf_%BSF_BUILD_NAME%_Win64
+  - path: bsf_%BSF_BUILD_NAME%_win64.zip
+    name: bsf_%BSF_BUILD_NAME%_win64
     type: zip
-  - path: bsf_%BSF_BUILD_NAME%_Win64_Symbols.zip
-    name: bsf_%BSF_BUILD_NAME%_Win64_Symbols
+  - path: bsf_%BSF_BUILD_NAME%_win64_symbols.zip
+    name: bsf_%BSF_BUILD_NAME%_win64_symbols
     type: zip
 
 deploy:
