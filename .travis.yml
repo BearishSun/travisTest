@@ -47,7 +47,7 @@ install:
       make tooldir=/usr install
       ld -v
     fi	
-	
+
   - cd ..
 
 script:
