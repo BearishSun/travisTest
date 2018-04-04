@@ -37,53 +37,35 @@ install:
   # Download GCC 7.1
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      GCC_URL="http://gcc.parentingamerica.com/releases/gcc-7.1.0/gcc-7.1.0.tar.gz"
+      GCC_URL="http://data.banshee3d.com/gcc-7.1-trusty.zip"
       cd ${DEPS_DIR}
       mkdir gcc
       travis_retry wget --no-check-certificate --quiet -O - ${GCC_URL} | tar --strip-components=1 -xz -C gcc
-      cd gcc
-      ./contrib/download_prerequisites
-      cd ..
-      mkdir gcc-build
-      cd gcc-build
-      ../gcc/configure --prefix=${TRAVIS_BUILD_DIR}/gcc --disable-multilib --disable-bootstrap
-      make
-      make install
-      cd ${TRAVIS_BUILD_DIR}/gcc
-      zip -rq gcc.zip ./*
-      curl -v --ftp-create-dirs -T gcc.zip -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}
+      export PATH=${DEPS_DIR}/gcc/bin:$PATH
+      export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib:$LD_LIBRARY_PATH
+      export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib64:$LD_LIBRARY_PATH
     fi		
 
   # Download binutils 2.28
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      BINUTILS_URL="http://ftp.gnu.org/gnu/binutils/binutils-2.28.tar.gz"
+      BINUTILS_URL="http://data.banshee3d.com/binutils-2.28-trusty.zip"
       cd ${DEPS_DIR}
       mkdir binutils
       travis_retry wget --no-check-certificate --quiet -O - ${BINUTILS_URL} | tar --strip-components=1 -xz -C binutils
-      cd binutils
-      mkdir build
-      cd build
-      ../configure --prefix=${TRAVIS_BUILD_DIR}/binutils --enable-gold --enable-ld=default --enable-plugins --enable-shared --disable-werror --enable-64-bit-bfd --with-system-zlib
-      make tooldir=${TRAVIS_BUILD_DIR}/binutils
-      make tooldir=${TRAVIS_BUILD_DIR}/binutils install
-      cd ${TRAVIS_BUILD_DIR}/binutils
-      zip -rq binutils.zip ./*
-      curl -v --ftp-create-dirs -T binutils.zip -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}
-
       export PATH=${TRAVIS_BUILD_DIR}/binutils/bin:${PATH}
-      cd ..
-      cd ..
     fi	
 
-  - cd ..
+  - cd ${TRAVIS_BUILD_DIR}
 
 script:
+  - gcc -v
+  - /sbin/ldconfig -p | grep stdc++
   - INSTALL_DIR="${TRAVIS_BUILD_DIR}/Install"
   - mkdir ${INSTALL_DIR}
   - mkdir Build && cd Build
   - cmake .. -DCMAKE_INSTALL_PREFIX:STRING=${INSTALL_DIR}
-  - make VERBOSE=1
+  - make
   - make install
   
 after_success:
