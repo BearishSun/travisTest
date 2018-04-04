@@ -57,6 +57,7 @@ install:
       cd binutils
       wget --no-check-certificate --quiet - ${BINUTILS_URL}
       unzip -q binutils-2.28-trusty.zip
+      ld -v
       export PATH=${DEPS_DIR}/binutils/bin:${PATH}
     fi	
 
@@ -65,10 +66,16 @@ install:
 script:
   - gcc -v
   - /sbin/ldconfig -p | grep stdc++
+  - ld -v
   - INSTALL_DIR="${TRAVIS_BUILD_DIR}/Install"
   - mkdir ${INSTALL_DIR}
   - mkdir Build && cd Build
-  - CC=gcc CXX=g++ cmake .. -DCMAKE_INSTALL_PREFIX:STRING=${INSTALL_DIR}
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/Deps"
+  - export PATH=${DEPS_DIR}/gcc/bin:$PATH
+  - export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib:$LD_LIBRARY_PATH
+  - export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib64:$LD_LIBRARY_PATH
+  - export PATH=${DEPS_DIR}/binutils/bin:$PATH
+  - CC=gcc CXX=g++ cmake -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++ -DCMAKE_INSTALL_PREFIX:STRING=${INSTALL_DIR} .. 
   - make
   - make install
   
