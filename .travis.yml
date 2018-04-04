@@ -41,7 +41,7 @@ install:
       cd ${DEPS_DIR}
       mkdir gcc
       cd gcc
-      travis_retry wget - ${GCC_URL}
+      wget --no-check-certificate --quiet - ${GCC_URL}
       unzip gcc-7.1-trusty.zip
       export PATH=${DEPS_DIR}/gcc/bin:$PATH
       export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib:$LD_LIBRARY_PATH
@@ -55,7 +55,7 @@ install:
       cd ${DEPS_DIR}
       mkdir binutils
       cd binutils
-      travis_retry wget - ${BINUTILS_URL}
+      wget --no-check-certificate --quiet - ${BINUTILS_URL}
       unzip binutils-2.28-trusty.zip
       export PATH=${TRAVIS_BUILD_DIR}/binutils/bin:${PATH}
     fi	
