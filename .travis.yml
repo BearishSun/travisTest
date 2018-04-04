@@ -68,7 +68,7 @@ script:
   - INSTALL_DIR="${TRAVIS_BUILD_DIR}/Install"
   - mkdir ${INSTALL_DIR}
   - mkdir Build && cd Build
-  - cmake .. -DCMAKE_INSTALL_PREFIX:STRING=${INSTALL_DIR}
+  - CC=gcc CXX=g++ cmake .. -DCMAKE_INSTALL_PREFIX:STRING=${INSTALL_DIR}
   - make
   - make install
   
