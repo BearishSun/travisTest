@@ -51,20 +51,13 @@ install:
   # Download binutils 2.28
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      BINUTILS_URL="http://ftp.gnu.org/gnu/binutils/binutils-2.28.tar.gz"
+      BINUTILS_URL="http://data.banshee3d.com/binutils-2.28-trusty.zip"
       cd ${DEPS_DIR}
       mkdir binutils
-      travis_retry wget --no-check-certificate --quiet -O - ${BINUTILS_URL} | tar --strip-components=1 -xz -C binutils
       cd binutils
-      mkdir build
-      cd build
-      ../configure --prefix=${TRAVIS_BUILD_DIR}/binutils --enable-gold --enable-ld=default --enable-plugins --enable-shared --disable-werror --enable-64-bit-bfd --with-system-zlib
-      make tooldir=${TRAVIS_BUILD_DIR}/binutils
-      make tooldir=${TRAVIS_BUILD_DIR}/binutils install
-      cd ${TRAVIS_BUILD_DIR}/binutils
-      zip -rq binutils.zip ./*
-      curl -v --ftp-create-dirs -T binutils.zip -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}
-
+      wget --no-check-certificate --quiet - ${BINUTILS_URL}
+      unzip -q binutils-2.28-trusty.zip
+      ld -v
       export PATH=${DEPS_DIR}/binutils/bin:${PATH}
     fi	
 
