@@ -11,9 +11,6 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - gcc-7
-            - g++-7
-            - binutils-2.26			
             - libgl1-mesa-dev
             - libglu1-mesa-dev
             - mesa-common-dev
@@ -22,36 +19,44 @@ matrix:
             - libxrandr-dev
             - libxi-dev
             - uuid-dev
-          update-alternatives:
-            - install /usr/bin/gcc gcc /usr/bin/gcc-7 50
-            - install /usr/bin/g++ g++ /usr/bin/g++-7 50
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-
-before_install:
-  - eval "${MATRIX_EVAL}"
   
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/Deps"
-  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+  - mkdir ${DEPS_DIR}
   
   # Download CMake
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       CMAKE_URL="https://cmake.org/files/v3.9/cmake-3.9.6-Linux-x86_64.tar.gz"
+      cd ${DEPS_DIR}
       mkdir cmake
       travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     fi
 
+  # Download GCC 7.1
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      GCC_URL="http://gcc.parentingamerica.com/releases/gcc-7.1.0/gcc-7.1.0.tar.gz"
+      cd ${DEPS_DIR}
+      mkdir gcc
+      travis_retry wget --no-check-certificate --quiet -O - ${GCC_URL} | tar --strip-components=1 -xz -C gcc
+      mkdir gcc-build
+      cd gcc-build
+      ../gcc/contrib/download_prerequisites
+      ../gcc/configure --prefix=${TRAVIS_BUILD_DIR}/gcc --disable-multilib --disable-bootstrap
+      make
+      make install
+      cd ${TRAVIS_BUILD_DIR}/gcc
+      zip -rq gcc.zip ./*
+      curl -v --ftp-create-dirs -T gcc.zip -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}
+    fi		
+	
   # Download binutils 2.28
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      /sbin/ldconfig -p | grep stdc++
-      ls /usr/lib/x86_64-linux-gnu
-      /usr/bin/g++-7 -v
-      
       BINUTILS_URL="http://ftp.gnu.org/gnu/binutils/binutils-2.28.tar.gz"
+      cd ${DEPS_DIR}
       mkdir binutils
       travis_retry wget --no-check-certificate --quiet -O - ${BINUTILS_URL} | tar --strip-components=1 -xz -C binutils
       cd binutils
@@ -60,10 +65,13 @@ install:
       ../configure --prefix=${TRAVIS_BUILD_DIR}/binutils --enable-gold --enable-ld=default --enable-plugins --enable-shared --disable-werror --enable-64-bit-bfd --with-system-zlib
       make tooldir=${TRAVIS_BUILD_DIR}/binutils
       make tooldir=${TRAVIS_BUILD_DIR}/binutils install
+      cd ${TRAVIS_BUILD_DIR}/binutils
+      zip -rq binutils.zip ./*
+      curl -v --ftp-create-dirs -T binutils.zip -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_DESTINATION}
+	  
       export PATH=${TRAVIS_BUILD_DIR}/binutils/bin:${PATH}
       cd ..
       cd ..
-      ld -v
     fi	
 
   - cd ..
