@@ -57,8 +57,9 @@ install:
       cd binutils
       wget --no-check-certificate --quiet - ${BINUTILS_URL}
       unzip -q binutils-2.28-trusty.zip
-      ld -v
       export PATH=${DEPS_DIR}/binutils/bin:${PATH}
+      export LD_LIBRARY_PATH=${DEPS_DIR}/binutils/lib:$LD_LIBRARY_PATH
+      ld -v
     fi	
 
   - cd ${TRAVIS_BUILD_DIR}
