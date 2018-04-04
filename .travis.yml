@@ -41,9 +41,11 @@ install:
       cd ${DEPS_DIR}
       mkdir gcc
       travis_retry wget --no-check-certificate --quiet -O - ${GCC_URL} | tar --strip-components=1 -xz -C gcc
+      cd gcc
+      ./contrib/download_prerequisites
+      cd ..
       mkdir gcc-build
       cd gcc-build
-      ../gcc/contrib/download_prerequisites
       ../gcc/configure --prefix=${TRAVIS_BUILD_DIR}/gcc --disable-multilib --disable-bootstrap
       make
       make install
