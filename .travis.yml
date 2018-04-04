@@ -42,7 +42,7 @@ install:
       mkdir gcc
       cd gcc
       wget --no-check-certificate --quiet - ${GCC_URL}
-      unzip gcc-7.1-trusty.zip
+      unzip -q gcc-7.1-trusty.zip
       export PATH=${DEPS_DIR}/gcc/bin:$PATH
       export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib:$LD_LIBRARY_PATH
       export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib64:$LD_LIBRARY_PATH
@@ -56,8 +56,8 @@ install:
       mkdir binutils
       cd binutils
       wget --no-check-certificate --quiet - ${BINUTILS_URL}
-      unzip binutils-2.28-trusty.zip
-      export PATH=${TRAVIS_BUILD_DIR}/binutils/bin:${PATH}
+      unzip -q binutils-2.28-trusty.zip
+      export PATH=${DEPS_DIR}/binutils/bin:${PATH}
     fi	
 
   - cd ${TRAVIS_BUILD_DIR}
