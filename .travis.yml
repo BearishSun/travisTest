@@ -28,6 +28,13 @@ install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/Deps"
   - mkdir ${DEPS_DIR}
   
+  # Download libUUID
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      brew update
+      brew install ossp-uuid
+    fi
+  
   # Download CMake
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
