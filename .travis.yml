@@ -19,6 +19,10 @@ matrix:
             - libxrandr-dev
             - libxi-dev
             - uuid-dev
+    - os: osx
+      compiler:
+        - clang
+      osx_image: xcode9
   
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/Deps"
@@ -46,7 +50,7 @@ install:
       export PATH=${DEPS_DIR}/gcc/bin:$PATH
       export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib:$LD_LIBRARY_PATH
       export LD_LIBRARY_PATH=${DEPS_DIR}/gcc/lib64:$LD_LIBRARY_PATH
-    fi		
+    fi
 
   # Download binutils 2.28
   - |
@@ -60,18 +64,20 @@ install:
       export PATH=${DEPS_DIR}/binutils/bin:${PATH}
       export LD_LIBRARY_PATH=${DEPS_DIR}/binutils/lib:$LD_LIBRARY_PATH
       ld -v
-    fi	
+    fi
 
   - cd ${TRAVIS_BUILD_DIR}
 
 script:
-  - gcc -v
-  - /sbin/ldconfig -p | grep stdc++
-  - ld -v
   - INSTALL_DIR="${TRAVIS_BUILD_DIR}/Install"
   - mkdir ${INSTALL_DIR}
   - mkdir Build && cd Build
-  - CC=gcc CXX=g++ cmake -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++ -DCMAKE_INSTALL_PREFIX:STRING=${INSTALL_DIR} .. 
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      CC=gcc CXX=g++ cmake -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++ -DCMAKE_INSTALL_PREFIX:STRING=${INSTALL_DIR} .. 
+    else
+      cmake -DCMAKE_INSTALL_PREFIX:STRING=${INSTALL_DIR} ..
+    fi
   - make
   - make install
   
