@@ -33,25 +33,25 @@ after_build:
  - ps: >-
        if($env:APPVEYOR_REPO_TAG -eq "true") 
        {
-         Move-Item -Path ./install/Release/include -Destination ./
+         Move-Item -Path ../install/Release/include -Destination ./
          mkdir bin
          cd bin
          mkdir Release
-         Move-Item -Path ./install/Release/bin/* -Destination ./Release
+         Move-Item -Path ../install/Release/bin/* -Destination ./Release
          mkdir Debug
-         Move-Item -Path ./install/Debug/bin/* -Destination ./Debug
+         Move-Item -Path ../install/Debug/bin/* -Destination ./Debug
          cd ..		 
          mkdir lib
          cd lib
          mkdir Release
-         Move-Item -Path ./install/Release/lib/* -Destination ./Release
+         Move-Item -Path ../install/Release/lib/* -Destination ./Release
          mkdir Debug
-         Move-Item -Path ./install/Debug/lib/* -Destination ./Debug
+         Move-Item -Path ../install/Debug/lib/* -Destination ./Debug
          cd ..
        }
        else
        {
-         Move-Item -Path ./install/Release/*.* -Destination ./
+         Move-Item -Path ../install/Release/*.* -Destination ./
        }
  - ps: cd ..
  - ps: >-
