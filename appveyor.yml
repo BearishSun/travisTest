@@ -51,7 +51,7 @@ after_build:
        }
        else
        {
-         Move-Item -Path ../install/Release/*.* -Destination ./
+         Move-Item -Path ../install/Release/* -Destination ./
        }
  - ps: cd ..
  - ps: >-
