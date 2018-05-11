@@ -56,7 +56,7 @@ after_build:
  - ps: cd ..
  - ps: >-
       if($env:APPVEYOR_REPO_TAG -eq "true") 
-      { $buildName = $APPVEYOR_REPO_TAG_NAME } 
+      { $buildName = $env:APPVEYOR_REPO_TAG_NAME } 
       else 
       { $buildName = "$(Get-Date -format dd.MM.yyyy)" }
  - ps: Set-AppveyorBuildVariable "BSF_BUILD_NAME" "$buildName"
