@@ -60,8 +60,8 @@ after_build:
       else 
       { $buildName = "$(Get-Date -format dd.MM.yyyy)" }
  - ps: Set-AppveyorBuildVariable "BSF_BUILD_NAME" "$buildName"
- - cmd: 7z a bsf_%BSF_BUILD_NAME%_win64.zip ./packaged/* -xr!*pdb
- - cmd: 7z a bsf_%BSF_BUILD_NAME%_win64_symbols.zip ./packaged/*pdb -r
+ - cmd: 7z a bsf_%BSF_BUILD_NAME%_tst_win64.zip ./packaged/* -xr!*pdb
+ - cmd: 7z a bsf_%BSF_BUILD_NAME%_tst_win64_symbols.zip ./packaged/*pdb -r
 
 artifacts:
   - path: bsf_%BSF_BUILD_NAME%_tst_win64.zip
