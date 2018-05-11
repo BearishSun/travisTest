@@ -95,5 +95,5 @@ deploy:
     active_mode: false
     beta: true
     debug: true
-    on:
-      APPVEYOR_REPO_TAG: true
+    #on:
+    #  APPVEYOR_REPO_TAG: true
