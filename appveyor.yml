@@ -37,6 +37,7 @@ after_build:
          mkdir bin
          cd bin
          Move-Item -Path ../../install/Release/bin/Data -Destination ./
+         Remove-Item ../../install/Debug/bin/Data -Force -Recurse
          mkdir Release
          Move-Item -Path ../../install/Release/bin/* -Destination ./Release
          mkdir Debug
