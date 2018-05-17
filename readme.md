@@ -15,12 +15,14 @@ The project's ultimate goal is to build a feature-set comparable to commercial o
 
 If you are interested in helping the project reach this goal sooner, consider contributing by implementing some of the tasks on our [roadmap](https://github.com/GameFoundry/bsf/blob/master/Documentation/GitHub/roadmap.md).
 
-# More information
-* [Features](https://github.com/GameFoundry/bsf/blob/master/Documentation/GitHub/features.md) - A list of all currently available features.
+# Features
+* [Features](https://github.com/GameFoundry/bsf/blob/master/Documentation/GitHub/features.md) - A detailed list of all currently available features.
 * [Roadmap](https://github.com/GameFoundry/bsf/blob/master/Documentation/GitHub/roadmap.md) - A list of features to be implemented in both near and far future. 
-* [Compiling](https://github.com/GameFoundry/bsf/blob/master/Documentation/GitHub/compiling.md) - A guide on how to compile the framework.
-* [Documentation](https://www.bsframework.io/docs/index.html) - API reference and manuals
-* [Examples](https://github.com/gamefoundry/bsfExamples) - A set of working examples demonstrating bsf capabilities
+
+# Get started
+* [Documentation](https://www.bsframework.io/docs/index.html) - Head over to the "User manuals" section to learn how to use the framework from the ground up. Use the API reference to look up what a particular class/method does.
+* [Examples](https://github.com/gamefoundry/bsfExamples) - Grab a set of working examples and start tinkering and analyzing them to figure out how things work. They are well documented and can be used for quickly learning the framework.
+* [Compiling](https://github.com/GameFoundry/bsf/blob/master/Documentation/GitHub/compiling.md) - Learn how to compile the framework from the source code. 
 
 # Screenshots
 
