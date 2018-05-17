@@ -24,8 +24,8 @@ If you are interested in helping the project reach this goal sooner, consider co
 
 # Screenshots
 
-![1](https://data.banshee3d.com/web/1thumb.png)[](https://data.banshee3d.com/web/1.png) ![2](https://data.banshee3d.com/web/2thumb.png)[](https://data.banshee3d.com/web/2.png)
+[![1](https://data.banshee3d.com/web/1thumb.png)](https://data.banshee3d.com/web/1.png) [![2](https://data.banshee3d.com/web/2thumb.png)](https://data.banshee3d.com/web/2.png)
 
-![3](https://data.banshee3d.com/web/3thumb.gif)[](https://data.banshee3d.com/web/3.gif) ![4](https://data.banshee3d.com/web/4thumb.gif)[](https://data.banshee3d.com/web/4.gif)
+[![3](https://data.banshee3d.com/web/3thumb.gif)](https://data.banshee3d.com/web/3.gif) [![4](https://data.banshee3d.com/web/4thumb.gif)](https://data.banshee3d.com/web/4.gif)
 
-![5](https://data.banshee3d.com/web/5thumb.png)[](https://data.banshee3d.com/web/5.png) ![6](https://data.banshee3d.com/web/6thumb.png)[](https://data.banshee3d.com/web/6.png)
+[![5](https://data.banshee3d.com/web/5thumb.png)](https://data.banshee3d.com/web/5.png) [![6](https://data.banshee3d.com/web/6thumb.png)](https://data.banshee3d.com/web/6.png)
