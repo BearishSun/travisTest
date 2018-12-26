@@ -113,7 +113,7 @@ deploy:
   provider: s3
   access_key_id: ${S3_ACCESS}
   secret_access_key: ${S3_SECRET}
-  bucket: ${S3_BUCKET}
+  bucket: "bsf-nightly"
   skip_cleanup: true
-  region: ${S3_REGION}
+  region: us-east-1
   local_dir: ${TRAVIS_BUILD_DIR}/artifacts
