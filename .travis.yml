@@ -116,4 +116,4 @@ deploy:
   bucket: ${S3_BUCKET}
   skip_cleanup: true
   region: ${S3_REGION}
-  local_dir: artifacts
+  local_dir: ${TRAVIS_BUILD_DIR}/artifacts
