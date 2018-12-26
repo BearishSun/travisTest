@@ -78,3 +78,6 @@ deploy:
     secret_access_key: $(S3_SECRET)
     bucket: bsf-nightly
     region: us-east-1
+    folder:
+    artifact:
+    set_public: false
