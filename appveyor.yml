@@ -74,28 +74,9 @@ artifacts:
     type: zip
 
 deploy:
-  - provider: FTP
-    protocol: ftp
-    host: $(FTP_HOST)
-    username: $(FTP_USER)
-    password: $(FTP_PASSWORD)
-    folder: bsfBuilds
-    application:
-    active_mode: false
-    beta: true
-    debug: true
-    on:
-      APPVEYOR_SCHEDULED_BUILD: true
 
-  - provider: FTP
-    protocol: ftp
-    host: $(FTP_HOST)
-    username: $(FTP_USER)
-    password: $(FTP_PASSWORD)
-    folder: bsfBuilds
-    application:
-    active_mode: false
-    beta: true
-    debug: true
-    #on:
-    #  APPVEYOR_REPO_TAG: true
+  - provider: S3
+    access_key_id: ikr0qOqTFKynHOQ6JezoqGOU9DAQjPMh3eeD07vkTvk=
+    secret_access_key: rHPdAwu3giD5H+boYE63o/KF2z/znA1usZTW0ajMUKmt+4hxmOQ35WpqpUJkI0mO
+    bucket: bsf-nightly
+    region: us-east-1
