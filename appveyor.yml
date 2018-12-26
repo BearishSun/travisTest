@@ -74,8 +74,10 @@ artifacts:
 deploy:
 
   - provider: S3
-    access_key_id: $(S3_ACCESS)
-    secret_access_key: $(S3_SECRET)
+    access_key_id: 
+      secure: DjX7NEjBDYhAMURrE5ucaP95zFdO32Ep91oLWr++/WM=
+    secret_access_key: 
+      secure: QtDQyveDiuE42QLzLmmaWltDOUgEB9eRzT0GicW4DIeWU+K5szFOkHLpCfL9ukRV
     bucket: bsf-nightly
     region: us-east-1
     folder:
