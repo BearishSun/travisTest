@@ -107,6 +107,8 @@ after_success:
       mkdir artifacts
       mv ${filename} artifacts
       mv ${symbolsFilename} artifacts
+      
+      ls -al
     fi
 
 deploy:
