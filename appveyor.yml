@@ -4,12 +4,10 @@ configuration: Release
 clone_folder: C:\Projects\bsf
 
 environment:
-  FTP_USER:
-    secure: 6/QO2m0slpHVIaSvCgshSQ==
-  FTP_PASSWORD:
-    secure: NZnU8rVuQ/CeRYWBRObDfQ==
-  FTP_HOST:
-    secure: vkR/qaZuHZ7k7iZQBfLlNYJzx/+rzkhRlOloJq7o0mk=
+  S3_ACCESS:
+    secure: ikr0qOqTFKynHOQ6JezoqGOU9DAQjPMh3eeD07vkTvk=
+  S3_SECURE:
+    secure: rHPdAwu3giD5H+boYE63o/KF2z/znA1usZTW0ajMUKmt+4hxmOQ35WpqpUJkI0mO
 
 build_script:
   - cmd: set INSTALL_DIR=C:/Projects/bsf/install/Release
@@ -76,7 +74,7 @@ artifacts:
 deploy:
 
   - provider: S3
-    access_key_id: ikr0qOqTFKynHOQ6JezoqGOU9DAQjPMh3eeD07vkTvk=
-    secret_access_key: rHPdAwu3giD5H+boYE63o/KF2z/znA1usZTW0ajMUKmt+4hxmOQ35WpqpUJkI0mO
+    access_key_id: $(S3_ACCESS)
+    secret_access_key: $(S3_SECRET)
     bucket: bsf-nightly
     region: us-east-1
