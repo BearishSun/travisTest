@@ -17,14 +17,15 @@ environment:
 
 build_script:
   - ps: >-
-        {
-          cinst doxygen.install
-          cd Documentation/Doxygen
-          doxygen config
-          cd ..
-          cd ..
-          7z a bsfDocs.zip ./Generated/html/* -r
-        }
+        cd Documentation/Doxygen
+        Invoke-WebRequest https://data.banshee3d.com/doxygen-1.8.15.windows.x64.bin.zip -OutFile doxygen.zip
+        7z x doxygen.zip
+        doxygen config.doxyconfig
+        cd html
+        Invoke-WebRequest https://data.banshee3d.com/SemanticUI.zip -OutFile SemanticUI.zip
+        7z x SemanticUI.zip
+        cd ../../..
+        7z a bsfDocs.zip ./Documentation/Generated/html/* -r
   - cmd: set INSTALL_DIR=C:/Projects/bsf/install/Release
   - cmd: set INSTALL_DIR_DBG=C:/Projects/bsf/install/Debug
   - cmd: mkdir "%INSTALL_DIR%"
