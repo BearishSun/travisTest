@@ -11,7 +11,7 @@ environment:
   FTP_USER:
     secure: 6/QO2m0slpHVIaSvCgshSQ==
   FTP_PASSWORD:
-    secure: NZnU8rVuQ/CeRYWBRObDfQ==
+    secure: U9f97lumC+OyorutEQys4w==
   FTP_HOST:
     secure: vkR/qaZuHZ7k7iZQBfLlNYJzx/+rzkhRlOloJq7o0mk=
 
