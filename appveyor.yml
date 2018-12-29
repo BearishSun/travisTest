@@ -15,10 +15,17 @@ environment:
   FTP_HOST:
     secure: vkR/qaZuHZ7k7iZQBfLlNYJzx/+rzkhRlOloJq7o0mk=
 
-install:
-  - cinst doxygen.install
-
 build_script:
+  - ps: >-
+        if($env:APPVEYOR_REPO_TAG -eq "true" -or $env:APPVEYOR_SCHEDULED_BUILD -eq "true")
+        {
+          cinst doxygen.install
+          cd Documentation/Doxygen
+          doxygen config
+          cd ..
+          cd ..
+          7z a bsfDocs.zip ./Generated/html/* -r
+        }
   - cmd: set INSTALL_DIR=C:/Projects/bsf/install/Release
   - cmd: set INSTALL_DIR_DBG=C:/Projects/bsf/install/Debug
   - cmd: mkdir "%INSTALL_DIR%"
@@ -32,16 +39,7 @@ build_script:
   - cmd: if %APPVEYOR_REPO_TAG% == true (cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX:STRING=%INSTALL_DIR_DBG% ..)
   - cmd: if %APPVEYOR_REPO_TAG% == true (cmake --build ./ --config Debug)
   - cmd: if %APPVEYOR_REPO_TAG% == true (cmake --build ./ --config Debug --target INSTALL)
-  - ps: >-
-        if($env:APPVEYOR_REPO_TAG -eq "true" -or $env:APPVEYOR_SCHEDULED_BUILD -eq "true")
-        {
-          cd ..
-          cd Documentation/Doxygen
-          doxygen config
-          cd ..
-          cd ..
-          7z a bsfDocs.zip ./Generated/html/* -r
-        }
+
 
 after_build:
  - ps: cd ..
