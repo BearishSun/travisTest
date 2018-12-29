@@ -20,8 +20,8 @@ build_script:
         cd Documentation/Doxygen
         Invoke-WebRequest https://data.banshee3d.com/doxygen-1.8.15.windows.x64.bin.zip -OutFile doxygen.zip
         7z x doxygen.zip
-        doxygen config.doxyconfig
-        cd html
+        ./doxygen config.doxyconfig
+        cd ../Generated/html
         Invoke-WebRequest https://data.banshee3d.com/SemanticUI.zip -OutFile SemanticUI.zip
         7z x SemanticUI.zip
         cd ../../..
