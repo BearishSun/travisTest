@@ -17,7 +17,6 @@ environment:
 
 build_script:
   - ps: >-
-        if($env:APPVEYOR_REPO_TAG -eq "true" -or $env:APPVEYOR_SCHEDULED_BUILD -eq "true")
         {
           cinst doxygen.install
           cd Documentation/Doxygen
