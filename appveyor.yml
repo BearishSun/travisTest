@@ -110,6 +110,6 @@ deploy:
     host: $(FTP_HOST)
     username: $(FTP_USER)
     password: $(FTP_PASSWORD)
-    folder: bsfDocs/nightly
+    folder: bsfRawDocs
     application:
     active_mode: false
