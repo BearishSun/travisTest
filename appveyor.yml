@@ -110,5 +110,3 @@ deploy:
     folder: bsfDocs/nightly
     application: bsfDocs
     active_mode: false
-    beta: true
-    debug: true
