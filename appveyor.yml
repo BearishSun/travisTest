@@ -111,5 +111,6 @@ deploy:
     username: $(FTP_USER)
     password: $(FTP_PASSWORD)
     folder: bsfRawDocs
+    artifact: bsfDocs
     application:
     active_mode: false
