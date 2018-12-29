@@ -24,8 +24,11 @@ build_script:
         cd ../Generated/html
         Invoke-WebRequest https://data.banshee3d.com/SemanticUI.zip -OutFile SemanticUI.zip
         7z x SemanticUI.zip
-        cd ../../..
-        7z a bsfDocs.zip ./Documentation/Generated/html/* -r
+        rm SemanticUI.zip
+        cd ..
+        Rename-Item html nightly
+        cd ../..
+        7z a bsfDocs.zip ./Documentation/Generated/* -r
   - cmd: set INSTALL_DIR=C:/Projects/bsf/install/Release
   - cmd: set INSTALL_DIR_DBG=C:/Projects/bsf/install/Debug
   - cmd: mkdir "%INSTALL_DIR%"
@@ -108,5 +111,5 @@ deploy:
     username: $(FTP_USER)
     password: $(FTP_PASSWORD)
     folder: bsfDocs/nightly
-    application: bsfDocs
+    application:
     active_mode: false
