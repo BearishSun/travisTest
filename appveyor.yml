@@ -105,12 +105,3 @@ deploy:
     folder:
     artifact: bsfBinaries bsfSymbols
     set_public: false
-  - provider: FTP
-    protocol: ftp
-    host: $(FTP_HOST)
-    username: $(FTP_USER)
-    password: $(FTP_PASSWORD)
-    folder: bsfRawDocs
-    artifact: bsfDocs
-    application:
-    active_mode: false
