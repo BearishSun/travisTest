@@ -8,12 +8,12 @@ environment:
     secure: ikr0qOqTFKynHOQ6JezoqGOU9DAQjPMh3eeD07vkTvk=
   S3_SECURE:
     secure: rHPdAwu3giD5H+boYE63o/KF2z/znA1usZTW0ajMUKmt+4hxmOQ35WpqpUJkI0mO
-   FTP_USER:
-     secure: 6/QO2m0slpHVIaSvCgshSQ==
-   FTP_PASSWORD:
-     secure: NZnU8rVuQ/CeRYWBRObDfQ==
-   FTP_HOST:
-     secure: vkR/qaZuHZ7k7iZQBfLlNYJzx/+rzkhRlOloJq7o0mk=
+  FTP_USER:
+    secure: 6/QO2m0slpHVIaSvCgshSQ==
+  FTP_PASSWORD:
+    secure: NZnU8rVuQ/CeRYWBRObDfQ==
+  FTP_HOST:
+    secure: vkR/qaZuHZ7k7iZQBfLlNYJzx/+rzkhRlOloJq7o0mk=
 
 install:
   - cinst doxygen.install

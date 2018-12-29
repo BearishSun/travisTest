@@ -93,9 +93,9 @@ after_success:
   - today=`date +%Y.%m.%d`
   - |
     if [ -n "$TRAVIS_TAG" ]; then
-      filename=bsf_${TRAVIS_TAG}_${TRAVIS_OS_NAME}.zip
+      filename=bsf_test_${TRAVIS_TAG}_${TRAVIS_OS_NAME}.zip
     else
-      filename=bsf_${today}_${TRAVIS_OS_NAME}.zip
+      filename=bsf_test_${today}_${TRAVIS_OS_NAME}.zip
     fi
   - cd ${INSTALL_DIR}
   - cd ..
