@@ -8,6 +8,15 @@ environment:
     secure: ikr0qOqTFKynHOQ6JezoqGOU9DAQjPMh3eeD07vkTvk=
   S3_SECURE:
     secure: rHPdAwu3giD5H+boYE63o/KF2z/znA1usZTW0ajMUKmt+4hxmOQ35WpqpUJkI0mO
+   FTP_USER:
+     secure: 6/QO2m0slpHVIaSvCgshSQ==
+   FTP_PASSWORD:
+     secure: NZnU8rVuQ/CeRYWBRObDfQ==
+   FTP_HOST:
+     secure: vkR/qaZuHZ7k7iZQBfLlNYJzx/+rzkhRlOloJq7o0mk=
+
+install:
+  - cinst doxygen.install
 
 build_script:
   - cmd: set INSTALL_DIR=C:/Projects/bsf/install/Release
@@ -23,6 +32,16 @@ build_script:
   - cmd: if %APPVEYOR_REPO_TAG% == true (cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_INSTALL_PREFIX:STRING=%INSTALL_DIR_DBG% ..)
   - cmd: if %APPVEYOR_REPO_TAG% == true (cmake --build ./ --config Debug)
   - cmd: if %APPVEYOR_REPO_TAG% == true (cmake --build ./ --config Debug --target INSTALL)
+  - ps: >-
+        if($env:APPVEYOR_REPO_TAG -eq "true" -or $env:APPVEYOR_SCHEDULED_BUILD -eq "true")
+        {
+          cd ..
+          cd Documentation/Doxygen
+          doxygen config
+          cd ..
+          cd ..
+          7z a bsfDocs.zip ./Generated/html/* -r
+        }
 
 after_build:
  - ps: cd ..
@@ -65,14 +84,16 @@ after_build:
 
 artifacts:
   - path: bsf_%BSF_BUILD_NAME%_tst_win64.zip
-    name: bsf_%BSF_BUILD_NAME%_tst_win64
+    name: bsfBinaries
     type: zip
   - path: bsf_%BSF_BUILD_NAME%_tst_win64_symbols.zip
-    name: bsf_%BSF_BUILD_NAME%_tst_win64_symbols
+    name: bsfSymbols
+    type: zip
+  - path: bsfDocs.zip
+    name: bsfDocs
     type: zip
 
 deploy:
-
   - provider: S3
     access_key_id: 
       secure: DjX7NEjBDYhAMURrE5ucaP95zFdO32Ep91oLWr++/WM=
@@ -81,5 +102,15 @@ deploy:
     bucket: bsf-nightly
     region: us-east-1
     folder:
-    artifact:
+    artifact: bsfBinaries bsfSymbols
     set_public: false
+  - provider: FTP
+    protocol: ftp
+    host: $(FTP_HOST)
+    username: $(FTP_USER)
+    password: $(FTP_PASSWORD)
+    folder: bsfDocs/nightly
+    application: bsfDocs
+    active_mode: false
+    beta: true
+    debug: true
