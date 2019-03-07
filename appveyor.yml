@@ -15,6 +15,12 @@ environment:
   FTP_HOST:
     secure: vkR/qaZuHZ7k7iZQBfLlNYJzx/+rzkhRlOloJq7o0mk=
 
+install:
+  - cmd: choco install composer
+  - cmd: refreshenv
+  - cmd: composer global require daux/daux.io
+  - cmd: refreshenv
+  
 build_script:
   - ps: |
         cd Documentation/Doxygen
@@ -25,10 +31,18 @@ build_script:
         Invoke-WebRequest https://data.banshee3d.com/SemanticUI.zip -OutFile SemanticUI.zip
         7z x SemanticUI.zip
         rm SemanticUI.zip
-        cd ..
-        Rename-Item html nightly
+        cd ../../..
+  - cmd: cd Documentation/Manuals
+  - cmd: daux generate
+  - cmd: cd ../..
+  - ps: |
+        cd Documentation/Manuals
+        mkdir Generated
+        Move-Item static Generated/nightly
+        cd ../Generated
+        Move-Item html ../Manuals/Generated/nightly/api
         cd ../..
-        7z a bsfDocs.zip ./Documentation/Generated/* -r
+        7z a bsfDocs.zip ./Documentation/Manuals/Generated/* -r
   - cmd: set INSTALL_DIR=C:/Projects/bsf/install/Release
   - cmd: set INSTALL_DIR_DBG=C:/Projects/bsf/install/Debug
   - cmd: mkdir "%INSTALL_DIR%"
