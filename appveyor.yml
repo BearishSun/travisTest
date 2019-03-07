@@ -16,6 +16,7 @@ environment:
     secure: vkR/qaZuHZ7k7iZQBfLlNYJzx/+rzkhRlOloJq7o0mk=
 
 install:
+  - cmd: if %APPVEYOR_SCHEDULED_BUILD% == true (choco install composer)
   - cmd: choco install composer
   - cmd: refreshenv
   - cmd: composer global require daux/daux.io
