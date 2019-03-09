@@ -23,6 +23,8 @@ install:
   - cmd: refreshenv
   
 build_script:
+  - cmd: echo %APPVEYOR_SCHEDULED_BUILD%
+  - cmd: if "%APPVEYOR_SCHEDULED_BUILD%" == "True" (echo "Yep")
   - ps: |
         cd Documentation/Doxygen
         Invoke-WebRequest https://data.banshee3d.com/doxygen-1.8.15.windows.x64.bin.zip -OutFile doxygen.zip
